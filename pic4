@@ -1,0 +1,61 @@
+#
+from scipy.misc import imread
+import numpy as np
+import cv2
+img = cv2.imread('/home/yudeliang/pic/greys/1.jpg')
+io.imshow(img)
+#io.show()
+#print (img)
+
+#
+import scipy.io as sio
+import numpy as np
+from skimage import io
+data = []
+a3=sio.loadmat('/home/yudeliang/Desktop/DIRNet/MNIST_data/phase3.mat')
+b3=a3['CT_phase1']
+c3=np.zeros([272,512,512])
+for i in range(272):
+    c3[i,:,:]=b3[:,:,i]
+d3=np.reshape(c3,[272,512,512,1])
+data.append(d3/2000)
+data
+io.imshow(d3[0][:,:,0],cmap='Greys_r')
+io.show()
+
+#
+import os
+import cv2
+import matplotlib.pyplot as plt
+im_name = '1.jpg'
+print 'Demo for /home/yudeliang/pic/greys/{}'.format(im_name)
+# go into def demo(net, image_name):
+im_file = os.path.join('/home/yudeliang/pic/greys', im_name)
+im_o = cv2.imread(im_file)
+#print im_o
+im = im_o[:, :, (2, 1, 0)] # change channel
+fig, ax = plt.subplots(figsize=(12, 12))
+ax.imshow(im, aspect='equal')
+plt.axis('off')
+plt.tight_layout()
+plt.draw()
+#plt.show()
+
+#
+from skimage import io
+import numpy
+img=io.imread('/home/yudeliang/Downloads/1.jpeg')
+io.imshow(img)
+io.show()
+#io.imsave('/home/yudeliang/Downloads/1.png',img)
+#print(img)
+#numpy.reshape(img,(-1))
+
+#
+import skimage.io as io
+from skimage import data_dir
+str='/home/yudeliang/pic/grey/*.jpg'
+coll=io.ImageCollection(str)
+print(len(coll))
+io.imshow(coll[0])
+io.show()
