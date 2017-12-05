@@ -4,16 +4,16 @@ class Config(object):
 def get_config(is_train):
   config = Config()
   if is_train:
-    config.batch_size = 6
-    config.im_size = [256, 512]
+    config.batch_size = 128
+    config.im_size = [28, 28]
     config.lr = 1e-4
-    config.iteration = 1000
+    config.iteration = 10000
 
     config.tmp_dir = "tmp"
     config.ckpt_dir = "ckpt"
   else:
-    config.batch_size = 6
-    config.im_size = [256, 512]
+    config.batch_size = 10
+    config.im_size = [28, 28]
 
     config.result_dir = "result"
     config.ckpt_dir = "ckpt"

@@ -1,6 +1,5 @@
 import tensorflow as tf
 from WarpST import WarpST
-import numpy
 from ops import *
 
 class CNN(object):
@@ -11,20 +10,17 @@ class CNN(object):
   
   def __call__(self, x):
     with tf.variable_scope(self.name, reuse=self.reuse):
-
-      for i in [1,2,3,4,5,6,7,8]:
-
-          x = conv2d(x, "conv"+str(i), 172, 3, 1,  "SAME", True, tf.nn.elu, self.is_train)
-
-      #x = tf.nn.avg_pool(x, [1,2,2,1], [1,2,2,1], "SAME")
-
-      for i in [9]:
-          x = conv2d(x, "conv"+str(i), 172, 3, 1,  "SAME", True, tf.nn.elu, self.is_train)
-
+      x = conv2d(x, "conv1", 64, 3, 1, 
+        "SAME", True, tf.nn.elu, self.is_train)
       x = tf.nn.avg_pool(x, [1,2,2,1], [1,2,2,1], "SAME")
 
-      x = conv2d(x, "out", 2, 3, 1, "SAME", False, None, self.is_train)
-        
+      x = conv2d(x, "conv2", 128, 3, 1, 
+        "SAME", True, tf.nn.elu, self.is_train)
+      x = conv2d(x, "out1", 128, 3, 1, 
+        "SAME", True, tf.nn.elu, self.is_train)
+      x = tf.nn.avg_pool(x, [1,2,2,1], [1,2,2,1], "SAME")
+      x = conv2d(x, "out2", 3, 3, 1, 
+        "SAME", False, None, self.is_train)
 
     if self.reuse is None:
       self.var_list = tf.get_collection(
@@ -50,7 +46,7 @@ class DIRNet(object):
     im_shape = [config.batch_size] + config.im_size + [1]
     self.x = tf.placeholder(tf.float32, im_shape)
     self.y = tf.placeholder(tf.float32, im_shape)
-    self.xy = tf.concat([self.x, self.y], 3)#[x,y] number junction
+    self.xy = tf.concat([self.x, self.y], 3)
 
     self.vCNN = CNN("vector_CNN", is_train=self.is_train)
 
