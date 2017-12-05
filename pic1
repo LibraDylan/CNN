@@ -1,0 +1,44 @@
+#result/1
+
+import numpy as np
+import matplotlib.pyplot as plt
+b=np.load('/home/yudeliang/Desktop/B.npy')
+c=np.load('/home/yudeliang/Desktop/C.npy')
+print b.shape
+for i in range (len(b)):
+    a=b[i]-c[i]
+    e=list(a.reshape(-1))
+x=np.arange(len(e))
+plt.figure(1)
+plt.plot(x,e)
+plt.show()   
+
+
+#
+
+import numpy as np
+import matplotlib.pyplot as plt
+b=np.load('/home/yudeliang/Desktop/B.npy')
+c=np.load('/home/yudeliang/Desktop/C.npy')
+print b.shape
+for i in range (len(b)):
+    a=b[i]-c[i]
+    e=list(a.reshape(-1))
+x=np.arange(0,len(e),500)
+e=np.array(e)
+plt.plot(x,e[x])
+plt.show()    
+
+#
+import numpy as np
+import matplotlib.pyplot as plt
+b=np.load('/home/yudeliang/Desktop/B.npy')
+c=np.load('/home/yudeliang/Desktop/C.npy')
+print b.shape
+for i in range (len(b)):
+    a=b[i]-c[i]
+    e=list(a.reshape(-1))
+x=np.arange(len(e[:100]))
+plt.figure(1)
+plt.plot(x,e[:100])
+plt.show()  
