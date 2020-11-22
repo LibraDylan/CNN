@@ -1,0 +1,7 @@
+# git 常用指令
+git clone https://github.com/LibraDylan/deeplearning/pulls 将代码仓默认分支的代码克隆到本地，一般是develop分支
+git clone -b https://github.com/LibraDylan/deeplearning/pulls 将代码仓指定分支的代码克隆到本地
+git log 查看提交日志
+git reset --soft dafjae234fgdaga45yorei 回滚提交的代码，soft后面的SHA码一般是通过git log获取到的，这是将提交到git本地仓的代码回滚
+git commit --amend 重新commit上一次commit的代码
+
