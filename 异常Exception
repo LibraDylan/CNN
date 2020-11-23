@@ -1,0 +1,12 @@
+ExceptionA继承自Exception，ExceptionB继承自ExceptionA，则如下打印是 --1
+如果两个catch顺序互换呢？--报错，异常从上到下匹配，故应该从细到粗catch
+
+public void test() {
+    try {
+        throw new ExceptionB();
+    } catch (ExceptionA e) {
+        System.out.println(1);
+    } catch (Exception e) {
+        System.out.println(2);
+    }
+}
